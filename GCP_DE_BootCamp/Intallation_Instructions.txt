@@ -1,0 +1,65 @@
+# Install the glcoud SDK
+./google-cloud-sdk/install.sh
+
+#To initialize the gcloudCLI
+./google-cloud-sdk/bin/gcloud init
+
+- log in
+- select project
+- set PATH to the google-cloud-sdk folder
+
+## gcloud commands reference ###
+gcloud help config - how to change individual settings
+gcloud --help
+gcloud topic --help
+gcloud cheat-sheet
+gcloud auth list
+gcloud config list
+
+## Cloud storage commands
+gcloud storage ls: to list down bucket in storage
+gcloud storage buckets create gs://[BUCKET_NAME]: to create a new bucket
+gcloud storage cp gs://firstbuckettest_21nov/IMG_8829.jpg ./ : to copy file from cloud to local
+
+### GCP DETAILS ######
+project ID: poetic-brace-478910-s4
+
+# Create a virtual environment (one-time per project)
+python3 -m venv .venv
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# install your package
+python3 -m pip install --upgrade pip
+
+# Google Cloud Storage
+python3 -m pip install google-cloud-storage
+
+# to set google credentials 
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/mora/Documents/GrowDataSkills/GCP_DE_BootCamp/Module_1/Class_1/poetic-brace-478910-s4-459e58c8c820.json"
+echo $GOOGLE_APPLICATION_CREDENTIALS
+
+
+######### To Authenticate
+
+* to configure environment variable for authentication we need to use "GOOGLE_APPLICATION_CREDENTIALS"
+* Create a service account and assign permissions to it. Based on this authentication going to be happen.
+* go to the service IAM
+* go to the service account tab
+* create new service account
+* add role - storage admin
+* Manage Key -> Add Key -> JSON bullet point -> click create
+
+Other option
+
+* Authenticate in cli
+* gcloud auth application-default login
+
+
+########## To Install third party libraries
+
+* Pandas
+python3 -m pip install pandas
+python3 -m pip install fsspec
+python3 -m pip install gcsfs
