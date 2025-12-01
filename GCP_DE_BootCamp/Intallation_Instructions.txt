@@ -63,3 +63,31 @@ Other option
 python3 -m pip install pandas
 python3 -m pip install fsspec
 python3 -m pip install gcsfs
+
+################## Google Cloud Run
+
+python3 -m pip install functions-framework
+
+curl -X POST "https://travel-booking-cloud-run-function-540041988296.europe-west1.run.app" \
+-H "Authorization: bearer $(gcloud auth print-identity-token)" \
+-H "Content-Type: application/json" \
+-d '{
+  "customer_name": "Alice",
+  "travel_date": "2025-11-30",
+  "origin": "BOM",
+  "destination": "DEL",
+  "passengers": 2,
+  "trip_type": "round_trip"
+}'
+
+gcloud functions deploy hello-world-service-with-gcloud \
+  --gen2 \
+  --runtime python312 \
+  --region us-central1 \
+  --trigger-http \
+  --entry-point hello_world \
+  --source . \
+  --allow-unauthenticated
+
+################# Google Pub Sub
+python3 -m pip install google-cloud-pubsub
